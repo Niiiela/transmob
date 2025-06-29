@@ -24,10 +24,5 @@
                     @endforeach
                 </tbody>
             </table>
-        @else
-            <div class="text-center p-6 text-red-600 font-semibold">
-                Código de rastreamento não encontrado.
-            </div>
-        @endif
     </div>
 </x-layout>
