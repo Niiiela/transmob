@@ -7,24 +7,18 @@ use Illuminate\Http\Request;
 
 class HistoryController extends Controller
 {
-    
     public function __invoke(Request $request)
     {
-        //Receber os parâmento da URL
         $phone = $request->input('phone', '');
 
-        //Busca no banco de dados
-        $customer = Customer::where('phone', '$phone')
-            ->first();
+        $customer = Customer::where('phone', $phone)
+                ->with('sent', 'received')
+                ->first();
 
-        if(! $customer) 
+        if(! $customer)
         {
-            return redirect()->back()->with('error', 'cliente não encontrado.');
+            return redirect()->back()->with('error', 'Cliente não encontrado!');
         }
-       
         return view('history.index', ['customer' => $customer]);
     }
 }
-
-
-       
