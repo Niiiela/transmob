@@ -27,7 +27,7 @@
                         <td class="px-6 py-4">{{ $sent->origin }}</td>
                         <td class="px-6 py-4">{{ $sent->destination }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <span class="px-2 py-1 rounded-full bg-green-500 text-white">{{ $sent->status }}</span>
+                            <span class="px-2 py-1 rounded-full {{$sent->status->GetColorLabel()}}">{{ $sent->status }}</span>
                         </td>
                     </tr>
                 @endforeach
@@ -58,7 +58,7 @@
                         <td class="px-6 py-4">{{ $received->origin }}</td>
                         <td class="px-6 py-4">{{ $received->destination }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <span class="px-2 py-1 rounded-full bg-green-500 text-white">{{ $received->status }}</span>
+                            <span class="px-2 py-1 rounded-full {{$received->status->GetColorLabel()}}">{{ $received->status }}</span>
                         </td>
                     </tr>
                 @endforeach

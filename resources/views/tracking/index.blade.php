@@ -4,7 +4,7 @@
             <div class="text-center p-6 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-t-lg">
                 <h1 class="text-3xl font-bold">Rastreamento Encomenda</h1>
                 <p class="mt-4 text-lg">Código de Rastreamento: <span class="font-semibold">{{ $trackings->tracker_code }}</span></p>
-                <p class="mt-2">Status: <span class="px-3 py-1 rounded-full">{{ $trackings->status }}</span></p>
+                <p class="mt-2">Status: <span class="px-3 py-1 rounded-full {{$trackings->status->GetColorLabel()}}">{{ $trackings->status }}</span></p>
                 <p class="mt-2">Destino: <span class="font-semibold">{{ $trackings->destination }}</span></p>
             </div>
 
