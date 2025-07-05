@@ -13,6 +13,7 @@ class Customer extends Model
     protected $fillable = [
         'name',
         'phone',
+        'email',
     ];
 
     public function sent(): HasMany
