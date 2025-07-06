@@ -7,4 +7,6 @@ Route::get('/ola', function () {
     return "Olá mundo Dani";
 });
 
+
+
 Route::post('/customer', [CustomerController::class, 'store']);
