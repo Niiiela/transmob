@@ -18,4 +18,15 @@ enum TrackingStatus:string
             self::DELIVERED => 'bg-green-100 text-green-800',
         };
     }
+
+    public static function fromName(string $name): ?TrackingStatus
+    {
+        foreach (TrackingStatus::cases() as $case) {
+            if ($case->name === $name) {
+                return $case;
+            }
+        }
+
+        return null;
+    }
 }

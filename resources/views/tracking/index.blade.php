@@ -16,16 +16,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if ($trackings->steps && $trackings->steps->count())
-                        @foreach ($trackings->steps as $step)
-                            <tr class="hover:bg-gray-50 transition-colors border-b">
-                                <td class="px-6 py-4">{{ $step->description }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    {{ \Carbon\Carbon::parse($step->created_at)->format('d/m/Y') }}
-                                </td>
-                            </tr>
-                        @endforeach
-                    @endif
+                    @foreach ($trackings->steps as $step)
+                        <tr class="hover:bg-gray-50 transition-colors border-b">
+                            <td class="px-6 py-4">
+                                {{ $step->description }}
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         @endif
