@@ -6,6 +6,7 @@ use App\Filament\Resources\CustomerResource\Pages;
 use App\Filament\Resources\CustomerResource\RelationManagers;
 use App\Models\Customer;
 use Filament\Forms;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -24,7 +25,9 @@ class CustomerResource extends Resource
     {
         return $form
             ->schema([
-                
+                TextInput::make('name')->required(),
+                TextInput::make('phone')->required(),
+                TextInput::make('email')->required(),
             ]);
     }
 
@@ -33,9 +36,9 @@ class CustomerResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('id'),
-                TextColumn::make('name'),
-                TextColumn::make('phone'),
-                TextColumn::make('email'),
+                TextColumn::make('name')->searchable(),
+                TextColumn::make('phone')->searchable(),
+                TextColumn::make('email')->searchable(),
             ])
             ->filters([
                 //
