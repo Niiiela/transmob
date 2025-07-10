@@ -34,4 +34,14 @@ class Tracking extends Model
     {
         return $this->hasMany(Step::class);
     }
+
+    public function sender()
+    {
+	    return $this->belongsTo(Customer::class);
+    }
+
+    public function received()
+    {
+	    return $this->belongsTo(Customer::class);
+    }
 }
