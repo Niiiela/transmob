@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Enums\TrackingStatus;
 use App\Filament\Resources\TrackingResource\Pages;
 use App\Filament\Resources\TrackingResource\RelationManagers;
 use App\Models\Tracking;
@@ -32,17 +33,17 @@ class TrackingResource extends Resource
                 Forms\Components\TextInput::make('tracker_code')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('status')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('send.name')
+                Forms\Components\Select::make('status')
+                    ->options(TrackingStatus::class)  
+                    ->required(),
+                Forms\Components\Select::make('sender_id')
                     ->label('Remetente')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('received.id')
+                    ->relationship('sender', 'name')
+                    ->required(),
+                Forms\Components\Select::make('receiver_id')
                     ->label('Destinatário')
-                    ->required()
-                    ->numeric(),
+                    ->relationship('receiver', 'name')  
+                    ->required(),
             ]);
     }
 
@@ -62,7 +63,7 @@ class TrackingResource extends Resource
                     ->label('Remetente')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('received.name')
+                Tables\Columns\TextColumn::make('receiver.name')  
                     ->label('Destinatário')
                     ->numeric()
                     ->sortable(),
