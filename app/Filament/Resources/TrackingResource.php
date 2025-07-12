@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Enums\TrackingStatus;
 use App\Filament\Resources\TrackingResource\Pages;
 use App\Filament\Resources\TrackingResource\RelationManagers;
+use App\Filament\Resources\TrackingResource\RelationManagers\StepsRelationManager;
 use App\Models\Tracking;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -24,18 +25,22 @@ class TrackingResource extends Resource
     {
         return $form
             ->schema([
+                Forms\Components\TextInput::make('tracker_code')
+                    ->label('Código de Rastreio')
+                    ->readOnly()
+                    ->default('Código Gerado Automaticamente')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('status')
+                    ->readOnly()
+                    ->default('Status padrão (Andamento)')
+                    ->required(),
                 Forms\Components\TextInput::make('origin')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('destination')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('tracker_code')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\Select::make('status')
-                    ->options(TrackingStatus::class)  
-                    ->required(),
                 Forms\Components\Select::make('sender_id')
                     ->label('Remetente')
                     ->relationship('sender', 'name')
@@ -95,7 +100,7 @@ class TrackingResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            StepsRelationManager::class,
         ];
     }
 
