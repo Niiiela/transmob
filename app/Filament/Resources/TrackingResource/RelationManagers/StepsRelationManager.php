@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\TrackingResource\RelationManagers;
 
 use App\Enums\TrackingStatus;
+use DragonCode\Contracts\Cashier\Resources\Model;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Forms\FormsComponent;
@@ -23,7 +24,8 @@ class StepsRelationManager extends RelationManager
                 Forms\Components\TextInput::make('description')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\Select::make('status')
+                Forms\Components\Select::make('type_status')
+                    ->label('Status')
                     ->options(TrackingStatus::toNomeValueArray())
                     ->required()
                 
@@ -41,7 +43,17 @@ class StepsRelationManager extends RelationManager
                 //
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make(),
+                Tables\Actions\CreateAction::make()
+                    ->after(function(Model $steps)
+                    {
+                        $typeStatus = $this->mountedTableActionsData[0]['type_status'];
+
+                        $newfreight = TrackingStatus::fromName($typeStatus);
+
+                        $steps->tracking->update(['status' => $newfreight]);
+
+                        return redirect(request()->header('Refere'));
+                    }),           
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

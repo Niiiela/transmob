@@ -15,7 +15,6 @@ class StepFactory extends Factory
         return [
             'tracking_id' => Tracking::factory(), // Gera um Tracking automaticamente
             'description' => $this->faker->sentence(),
-            'date' => $this->faker->dateTimeBetween('-10 days', 'now'),
         ];
     }
 }

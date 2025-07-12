@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('tracking_id')->constrained()->onDelete('cascade');
             $table->string('description');
-            $table->dateTime('date'); 
             $table->timestamps();
         });
     }

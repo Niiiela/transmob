@@ -9,6 +9,6 @@ class TrackingSeeder extends Seeder
 {
     public function run(): void
     {
-        Tracking::factory(5)->create();
+        Tracking::factory(3)->create();
     }
 }

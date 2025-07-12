@@ -12,6 +12,6 @@ class StepSeeder extends Seeder
      */
     public function run(): void
     {
-        Step::factory(5)->create();
+        Step::factory(3)->create();
     }
 }
