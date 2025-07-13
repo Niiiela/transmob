@@ -17,8 +17,8 @@ class Step extends Model
           "description",
      ];
 
-     public function tracking(): BelongsTo
-     {
-          return $this->belongsTo(Tracking::class);
-     }
+   public function tracking(): BelongsTo
+{
+    return $this->belongsTo(Tracking::class);
+}
 }

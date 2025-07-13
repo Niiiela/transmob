@@ -45,7 +45,7 @@ class TrackingResource extends Resource
                     ->label('Remetente')
                     ->relationship('sender', 'name')
                     ->required(),
-                Forms\Components\Select::make('receiver_id')
+                Forms\Components\Select::make('destination_id')
                     ->label('Destinatário')
                     ->relationship('receiver', 'name')  
                     ->required(),

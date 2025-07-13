@@ -3,7 +3,7 @@
 namespace App\Filament\Resources\TrackingResource\RelationManagers;
 
 use App\Enums\TrackingStatus;
-use DragonCode\Contracts\Cashier\Resources\Model;
+use Illuminate\Database\Eloquent\Model;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Forms\FormsComponent;
@@ -44,15 +44,18 @@ class StepsRelationManager extends RelationManager
             ])
             ->headerActions([
                 Tables\Actions\CreateAction::make()
+                ->visible(function()
+                {
+	                $tracking = $this->getOwnerRecord();
+	
+	                return $tracking->status !== TrackingStatus::DELIVERED;
+                })
                     ->after(function(Model $steps)
-                    {
+                    {   
                         $typeStatus = $this->mountedTableActionsData[0]['type_status'];
-
                         $newfreight = TrackingStatus::fromName($typeStatus);
-
                         $steps->tracking->update(['status' => $newfreight]);
-
-                        return redirect(request()->header('Refere'));
+                        return redirect(request()->header('Referer'));
                     }),           
             ])
             ->actions([

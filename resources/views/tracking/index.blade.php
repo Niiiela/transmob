@@ -19,13 +19,13 @@
             </tr>
         </thead>
         <tbody>
-             @foreach ($trackings->step as $steps)
+             @foreach ($trackings->steps as $step)
                     <tr class="hover:bg-gray-50 transition-colors border-b">
                         <td class="px-6 py-4">
-                            {{ $steps->description }}
+                            {{ $step->description }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $steps->created_at }}
+                            {{ $step->created_at }}
                         </td>
                     </tr>
                 @endforeach
