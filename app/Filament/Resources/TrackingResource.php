@@ -88,7 +88,6 @@ class TrackingResource extends Resource
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -110,7 +109,6 @@ class TrackingResource extends Resource
             'index' => Pages\ListTrackings::route('/'),
             'create' => Pages\CreateTracking::route('/create'),
             'view' => Pages\ViewTracking::route('/{record}'),
-            'edit' => Pages\EditTracking::route('/{record}/edit'),
         ];
     }
 }
